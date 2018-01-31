@@ -1,0 +1,95 @@
+<ngx-loading [show]="loading" [config]="{fullScreenBackdrop: true }"></ngx-loading>
+<div class="Opciones">
+    <app-options (DateRange)="getDateRange($event)"
+                 (StateCode)="getStateCode($event)"
+                 (Field)="getField($event)"
+                 (Term)="getterm($event)"
+    ></app-options>
+
+</div>
+<div style="position: relative;  /* border: 1px solid;*/ width: 60%; float: left; height: 70px">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">First</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+        </li>
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">Next</a>
+        </li>
+        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">Last</a>
+        </li>
+    </ul>
+
+</div>
+<div class="div-response-time" style="font-size: 25px"><h4>Total​ ​Average​ ​Response​ ​Time: </h4>{{resultime}}</div>
+
+<div>
+
+
+</div>
+
+<div class="mat-card-div-father">
+    <div *ngFor="let providers of pagedata | filter:term" class="mydiv">
+        <mat-card>
+            <mat-card-content>
+                <label>State​ ​Code:</label>{{providers.cd_cebroker_state}}<br>
+                <label>Pro​ ​Code:</label>{{providers.pro_cde}}<br>
+                <label>Profession:</label>{{providers.cd_profession}} <br>
+                <label>License​ ​ID:</label>{{providers.id_license}} <br>
+                <label>Cycle​ ​End​ ​Date:</label>{{providers.dt_end}} <br>
+                <label>Compliance​ ​Status:</label>{{providers.ds_compl_status_returned}} <br>
+                <label>Client​ ​ID:</label>{{providers.id_client_nbr}} <br>
+                <label>Start​ ​Log​ ​Date:</label>{{providers.dt_Start_Log}} <br>
+                <label>End​ ​Log​ ​Date:</label>{{providers.dt_end_log}} <br>
+                <label>Environment:</label>{{providers.cd_environment}} <br>
+                <label>Machine:</label>{{providers.cd_machine}}<br>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div style=" border: 1px solid; position: relative; top: 660px; height: 70px; clear: both; background: rgb(253,205,7); ">
+   <h2 align="center">CHARTS</h2>
+</div>
+<div style="clear: both;position: relative;
+    float: left;
+    top:680px ;
+    width: 33%;
+    height: 400px;">
+    <mat-card style="width: 100%;
+    height: 100%;">
+        <mat-card-content>
+            <h3 style="text-align: center">Average​ ​Response​ ​Time​ ​per​ ​Day</h3>
+            <app-chart></app-chart>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="chart">
+    <mat-card style="width: 100%;
+    height: 100%;">
+        <mat-card-content>
+            <h3 style="text-align: center">Total​ ​Requests​ ​per​ ​Machine​</h3>
+            <app-chart-machine></app-chart-machine>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="chart">
+    <mat-card style="width: 100%;
+    height: 100%;">
+        <mat-card-content>
+            <h3 style="text-align: center">Total​ ​Requests​ ​per​ ​Compliance​ ​Status​</h3>
+            <app-chart-compliance-status></app-chart-compliance-status>
+        </mat-card-content>
+    </mat-card>
+</div>
+<!--
+<!-- pager
+<div *ngFor="let item of pagedItems">{{item.name}}</div>
+-->

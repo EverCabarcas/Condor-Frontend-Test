@@ -1,0 +1,15 @@
+<div *ngIf="bol2" style="position: relative; top: 30px">
+      <canvas baseChart width="400" height="300"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+
+
+

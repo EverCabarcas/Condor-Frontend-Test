@@ -1,0 +1,65 @@
+.mydiv{
+    position: relative;
+    float: left;
+    padding-left: 15px;
+    padding-top: 20px;
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+.Time {
+    position: relative;
+    /*background: crimson;*/
+    display: table;
+    margin-right: 60%;
+    margin-left: auto;
+    margin-bottom: 10px;
+    /* border: 1px solid;*/
+}
+
+.mat-card-div-father {
+    top: 15%;
+    height: 650px;
+    position: absolute;
+    width: 100%;
+    /*background: blueviolet;*/
+    margin: 0;
+    /* border: 1px solid;
+      */
+    padding: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    bottom: 1%
+}
+
+.div-response-time {
+    display: inline-block;
+    /* border: 1px solid;*/
+    position: absolute;
+    width: 40%;
+    height: 70px;
+    text-align: center;
+}
+
+a {
+    cursor: pointer;
+}
+
+.Opciones {
+    position: relative;
+    margin-bottom: 5px;
+    height: 40px;
+    /* border: 1px solid; */
+}
+
+.chart {
+
+    position: relative;
+    float: left;
+    top: 670px;
+    width: 33%;
+    height: 400px;
+    /* border: 1px solid;
+     */
+    margin-top: 10px;
+}

@@ -1,0 +1,52 @@
+<div>
+     <span tooltip="Date Range Filter"
+           [tooltipDisabled]="false"
+           [tooltipAnimation]="true"
+           tooltipPlacement="top">
+<form #myForm2="ngForm">
+    <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                          [(ngModel)]="model2" required
+                          (dateRangeChanged)="onDateRangeChanged($event)"
+    ></my-date-range-picker>
+</form>
+     </span>
+</div>
+
+<div style="width: 15%; height: 100%; left: 3%;">
+    <span tooltip="State Code Dropdown Filter"
+          [tooltipDisabled]="false"
+          [tooltipAnimation]="true"
+          tooltipPlacement="top">
+    <i class="material-icons" style="padding-top: 5px; float: left;">filter_list</i>
+<select [(ngModel)]="statecodeselected" style="width: 80%; height: 95%;  border-radius: 5px;"
+        (change)="onSelect($event)">
+    <option *ngFor="let statecode of stateCode" [value]="statecode.value">
+        {{ statecode.viewValue }}</option>
+</select>
+    </span>
+</div>
+
+<div style="width: 15%; height: 100%; left: 6%;">
+    <span tooltip="Field Dropdown Filter"
+          [tooltipDisabled]="false"
+          [tooltipAnimation]="true"
+          tooltipPlacement="top">
+    <i class="material-icons" style="padding-top: 5px; float: left;">filter_list</i>
+    <select [(ngModel)]="fieldselected" style="width: 80%; height: 95%;  border-radius: 5px;"
+            (change)="onField($event)">
+        <option *ngFor="let listfield of listField" [value]="listfield.value">
+            {{ listfield.viewValue }}</option>
+    </select>
+    </span>
+</div>
+
+<div style="left: 10%; width: 40%">
+    <span tooltip="The Input Search Only Find By Actual Page"
+          [tooltipDisabled]="false"
+          [tooltipAnimation]="true"
+          tooltipPlacement="top">
+        <input type="text" [(ngModel)]="term" (input)="onterm($event)" placeholder="Search"
+               style=" padding-top: 10px; float: left; border-radius: 5px; width: 100%;">
+</span>
+
+</div>

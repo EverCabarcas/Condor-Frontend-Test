@@ -1,0 +1,9 @@
+form {
+    width: 15%;
+    padding-right: 4px;
+}
+
+div {
+    position: relative;
+    float: left;
+}
