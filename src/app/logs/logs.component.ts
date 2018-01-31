@@ -47,7 +47,6 @@ export class LogsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loading = true;
         this.op.fieldselected = 'Start​ ​Log​ ​Date';
         let url = this.url + 'startdate=' + (this.date.getMonth() + 1).toString() +
             '/' + this.date.getDate().toString() +
@@ -55,141 +54,30 @@ export class LogsComponent implements OnInit {
             '&enddate=' + (this.date.getMonth() + 1).toString() +
             '/' + this.date.getDate().toString() +
             '/' + this.date.getFullYear().toString() + '&state=FL';
-        this.http.get(url)
-            .subscribe(
-                (data: any) => {
-                    this.loading = false;
-                    this.alldata = data;
-                    if (this.alldata.length == 0) {
-                        alert('No have any data for this filter');
-                        return;
-                    }
-                    this.ResponseTimeForLog(this.alldata);
-
-                    this.alldata.sort(function (date1, date2) {
-                        // This is a comparison function that will result in dates being sorted in
-                        // ASCENDING order. As you can see, JavaScript's native comparison operators
-                        // can be used to compare dates. This was news to me.
-                        if (date1.dt_Start_Log > date2.dt_Start_Log) return 1;
-                        if (date1.dt_Start_Log < date2.dt_Start_Log) return -1;
-                        return 0;
-                    });
-
-                    this.setPage(1);
-                    this.RequesByMachine(this.alldata);
-                    this.RequesByCompliance(this.alldata);
-                    this.child.receive({
-                        number: this.logresponse,
-                        label: 'Req'
-                    });
-                    this.childMachine.receive(this.numbermachine);
-                    this.childCompliance.receive(this.numbercompliance);
-                },
-                (err) => {
-                    console.error('error');
-                    this.loading = false;
-                }
-            );
-
+        this.RequestProcess(url);
     }
 
     getDateRange(event: IMyDateRangeModel): void {
-        this.loading = true;
-        this.daterange = event;
         this.op.fieldselected = 'Start​ ​Log​ ​Date';
+        this.daterange = event;
         let url = this.url + 'startdate=' + (event.beginDate.month.toString()) +
             '/' + event.beginDate.day.toString() +
             '/' + event.beginDate.year.toString() +
             '&enddate=' + event.endDate.month.toString() +
             '/' + event.endDate.day.toString() +
             '/' + event.endDate.year.toString() + '&state=' + this.statecode.toString();
-
-        // console.log(event.beginDate, event.endDate);
-        this.http.get(url)
-            .subscribe(
-                (data: any) => {
-
-                    this.loading = false;
-                    this.alldata = data;
-                    if (this.alldata.length == 0) {
-                        alert('No have any data for this filter');
-                        return;
-                    }
-                    this.ResponseTimeForLog(this.alldata);
-                    this.alldata.sort(function (date1, date2) {
-                        // This is a comparison function that will result in dates being sorted in
-                        // ASCENDING order. As you can see, JavaScript's native comparison operators
-                        // can be used to compare dates. This was news to me.
-                        if (date1.dt_Start_Log > date2.dt_Start_Log) return 1;
-                        if (date1.dt_Start_Log < date2.dt_Start_Log) return -1;
-                        return 0;
-                    });
-
-                    this.setPage(1);
-
-                    this.RequesByMachine(this.alldata);
-                    this.RequesByCompliance(this.alldata);
-                    this.child.receive({
-                        number: this.logresponse,
-                        label: 'Req'
-                    });
-                    this.childMachine.receive(this.numbermachine);
-                    this.childCompliance.receive(this.numbercompliance);
-                },
-                (err) => {
-                    console.error('error');
-                    this.loading = false;
-                }
-            );
+        this.RequestProcess(url);
     }
 
     getStateCode(event: string) {
-        this.loading = true;
         this.statecode = event;
-
         let url = this.url + 'startdate=' + (this.daterange.beginDate.month.toString()) +
             '/' + this.daterange.beginDate.day.toString() +
             '/' + this.daterange.beginDate.year.toString() +
             '&enddate=' + this.daterange.endDate.month.toString() +
             '/' + this.daterange.endDate.day.toString() +
             '/' + this.daterange.endDate.year.toString() + '&state=' + this.statecode.toString();
-
-        this.http.get(url)
-            .subscribe(
-                (data: any) => {
-                    this.loading = false;
-                    this.alldata = data;
-                    if (this.alldata.length == 0) {
-                        alert('No have any data for this filter');
-                        return;
-                    }
-                    this.ResponseTimeForLog(this.alldata);
-
-                    console.log(this.alldata.length);
-                    this.alldata.sort(function (date1, date2) {
-                        // This is a comparison function that will result in dates being sorted in
-                        // ASCENDING order. As you can see, JavaScript's native comparison operators
-                        // can be used to compare dates. This was news to me.
-                        if (date1.dt_Start_Log > date2.dt_Start_Log) return 1;
-                        if (date1.dt_Start_Log < date2.dt_Start_Log) return -1;
-                        return 0;
-                    });
-
-                    this.setPage(1);
-                    this.RequesByMachine(this.alldata);
-                    this.RequesByCompliance(this.alldata);
-                    this.child.receive({
-                        number: this.logresponse,
-                        label: 'Req'
-                    });
-                    this.childMachine.receive(this.numbermachine);
-                    this.childCompliance.receive(this.numbercompliance);
-                },
-                (err) => {
-                    console.error('error');
-                    this.loading = false;
-                }
-            );
+        this.RequestProcess(url);
     }
 
     getField(event: string) {
@@ -261,6 +149,45 @@ export class LogsComponent implements OnInit {
         this.pagedata = this.alldata.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
 
+    RequestProcess(url:string){
+        this.loading = true;
+        this.http.get(url)
+            .subscribe(
+                (data: any) => {
+                    this.loading = false;
+                    this.alldata = data;
+                    if (this.alldata.length == 0) {
+                        alert('No have any data for this filter');
+                        return;
+                    }
+                    this.ResponseTimeForLog(this.alldata);
+
+                    this.alldata.sort(function (date1, date2) {
+                        // This is a comparison function that will result in dates being sorted in
+                        // ASCENDING order. As you can see, JavaScript's native comparison operators
+                        // can be used to compare dates. This was news to me.
+                        if (date1.dt_Start_Log > date2.dt_Start_Log) return 1;
+                        if (date1.dt_Start_Log < date2.dt_Start_Log) return -1;
+                        return 0;
+                    });
+
+                    this.setPage(1);
+                    this.RequesByMachine(this.alldata);
+                    this.RequesByCompliance(this.alldata);
+                    this.child.receive({
+                        number: this.logresponse,
+                        label: 'Req'
+                    });
+                    this.childMachine.receive(this.numbermachine);
+                    this.childCompliance.receive(this.numbercompliance);
+                },
+                (err) => {
+                    console.error('error');
+                    this.loading = false;
+                }
+            );
+
+    }
 
     OrderByProCode(array: any[]) {
         array.sort(function (a, b) {

@@ -71,7 +71,6 @@ export class OptionsComponent implements OnInit {
 
     onField(event: string) {
         this.Field.emit(this.fieldselected);
-        alert(this.fieldselected);
     }
 
     onterm(event: string) {
