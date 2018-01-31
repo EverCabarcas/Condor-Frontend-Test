@@ -6,9 +6,10 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./machine.component.css']
 })
 export class ChartMachineComponent implements OnInit {
-    bol = false;
-    NumberData: number [] = [];
-    LabelData: string [] = [];
+
+    public bol = false;
+    public NumberData: number [] = [];
+    public LabelData: string [] = [];
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
@@ -37,13 +38,6 @@ export class ChartMachineComponent implements OnInit {
         ];
         this.barChartLabels = this.LabelData;
         this.bol = true;
-    }
-
-    // events
-    public chartClicked(e: any): void {
-    }
-
-    public chartHovered(e: any): void {
     }
 
     constructor() {

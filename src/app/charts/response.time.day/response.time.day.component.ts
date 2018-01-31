@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-chart',
@@ -6,11 +6,9 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
     styleUrls: ['./response.time.day.component.css']
 })
 export class ChartComponent implements OnInit {
-    bol2 = false;
-    number: number[] = [];
-    name: string [] = [];
-    data: number [] = [];
-    labels: string [] = [];
+    public bol2 = false;
+    public data: number [] = [];
+    public labels: string [] = [];
     // lineChart
     public lineChartData: Array<any>;
     public lineChartLabels: Array<any>;
@@ -32,10 +30,6 @@ export class ChartComponent implements OnInit {
     public lineChartType: string = 'line';
 
 
-    // events
-    public chartClicked(e: any): void {
-    }
-
     public receive(message: any) {
         while (this.data.length > 0) {
             this.data.pop();
@@ -43,7 +37,7 @@ export class ChartComponent implements OnInit {
         while (this.labels.length > 0) {
             this.labels.pop();
         }
-        console.log(message);
+
         let bol: boolean = false;
         let dates: Date [] = [];
         let count: number = 0;
@@ -62,7 +56,7 @@ export class ChartComponent implements OnInit {
                 bol = false;
             }
         }
-        console.log(dates);
+
         for (let m of dates) {
             for (let k of message.number) {
                 if (m.getDate() == k.date.getDate()) {
@@ -80,7 +74,6 @@ export class ChartComponent implements OnInit {
             this.labels.push(dates[i].getDate().toString());
         }
 
-        console.log(this.data);
 
         this.lineChartData = [
             {data: this.data, label: 'Requests per Day'},
@@ -92,14 +85,10 @@ export class ChartComponent implements OnInit {
         for (let a of this.data) {
             suma += a;
         }
-        console.log('la suma:');
-        console.log(suma);
+
 
     }
 
-
-    public chartHovered(e: any): void {
-    }
 
     constructor() {
     }

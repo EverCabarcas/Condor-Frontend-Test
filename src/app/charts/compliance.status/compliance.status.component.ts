@@ -7,9 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ChartComplianceStatusComponent implements OnInit {
 
-    bol = false;
-    NumberData: number [] = [];
-    LabelData: string [] = [];
+    public bol = false;
+    public NumberData: number [] = [];
+    public LabelData: string [] = [];
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
@@ -17,7 +17,6 @@ export class ChartComplianceStatusComponent implements OnInit {
     public barChartLabels: string[];
     public barChartType: string = 'bar';
     public barChartLegend: boolean = true;
-
     public barChartData: any[];
 
     constructor() {

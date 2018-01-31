@@ -15,39 +15,39 @@ import {OptionsComponent} from '../options/options.component';
 })
 export class LogsComponent implements OnInit {
 
-    logresponse: any [] = [];
-    numbermachine: any [] = [];
-    numbercompliance: any [] = [];
-    bol = false;
-    loading = false;
-    term: any;
-    date: Date = new Date();
-    daterange: any = {
+    public logresponse: any [] = [];
+    public numbermachine: any [] = [];
+    public numbercompliance: any [] = [];
+    public bol = false;
+    public loading = false;
+    public term: any;
+    public date: Date = new Date();
+    public daterange: any = {
         beginDate: {year: this.date.getFullYear(), month: (this.date.getMonth() + 1), day: this.date.getDate()},
         endDate: {year: this.date.getFullYear(), month: (this.date.getMonth() + 1), day: this.date.getDate()}
     };
-    statecode: string = 'FL';
-    fieldselected: string;
-    url: string = 'https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData?';
-    resultime: number = 0;
+    public statecode: string = 'FL';
+    public fieldselected: string;
+    public url: string = 'https://api.cebroker.com/v1/cerenewaltransactions/GetLogsRecordData?';
+    public resultime: number = 0;
     // array of all items to be paged
     private alldata: any[];
     // pager object
-    pager: any = {};
+    public pager: any = {};
     // paged items
-    pagedata: any[];
+    public pagedata: any[];
 
-    @ViewChild(ChartComponent) child;
+    @ViewChild(ChartComponent) childResponseTime;
     @ViewChild(ChartMachineComponent) childMachine;
     @ViewChild(ChartComplianceStatusComponent) childCompliance;
-    @ViewChild(OptionsComponent) op;
+    @ViewChild(OptionsComponent) childOptions;
 
 
     constructor(private http: HttpClient, private pagerService: PagerService) {
     }
 
     ngOnInit() {
-        this.op.fieldselected = 'Start​ ​Log​ ​Date';
+        this.childOptions.fieldselected = 'Start​ ​Log​ ​Date';
         let url = this.url + 'startdate=' + (this.date.getMonth() + 1).toString() +
             '/' + this.date.getDate().toString() +
             '/' + this.date.getFullYear().toString() +
@@ -58,7 +58,7 @@ export class LogsComponent implements OnInit {
     }
 
     getDateRange(event: IMyDateRangeModel): void {
-        this.op.fieldselected = 'Start​ ​Log​ ​Date';
+        this.childOptions.fieldselected = 'Start​ ​Log​ ​Date';
         this.daterange = event;
         let url = this.url + 'startdate=' + (event.beginDate.month.toString()) +
             '/' + event.beginDate.day.toString() +
@@ -149,7 +149,7 @@ export class LogsComponent implements OnInit {
         this.pagedata = this.alldata.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
 
-    RequestProcess(url:string){
+    RequestProcess(url: string) {
         this.loading = true;
         this.http.get(url)
             .subscribe(
@@ -174,7 +174,7 @@ export class LogsComponent implements OnInit {
                     this.setPage(1);
                     this.RequesByMachine(this.alldata);
                     this.RequesByCompliance(this.alldata);
-                    this.child.receive({
+                    this.childResponseTime.receive({
                         number: this.logresponse,
                         label: 'Req'
                     });

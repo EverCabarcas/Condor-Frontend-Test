@@ -9,22 +9,19 @@ import {IMyDrpOptions, IMyDateRangeModel} from 'mydaterangepicker';
     styleUrls: ['./options.component.css']
 })
 export class OptionsComponent implements OnInit {
-    datenow: Date = new Date();
-    statecodeselected: string = 'FL';
-    fieldselected: string = 'Start​ ​Log​ ​Date';
-    marcterm: string;
-    term;
-    beginDate = {};
-    m;
+    public datenow: Date = new Date();
+    public statecodeselected: string = 'FL';
+    public fieldselected: string = 'Start​ ​Log​ ​Date';
+    public term: string;
 
-    stateCode = [
+    public stateCode = [
         {value: 'FL', viewValue: 'FL'},
         {value: 'OH', viewValue: 'OH'},
         {value: 'GA', viewValue: 'GA'},
         {value: 'LA', viewValue: 'LA'}
     ];
 
-    listField = [
+    public listField = [
         {value: 'State​ ​Code', viewValue: 'State​ ​Code'},
         {value: 'Pro​ ​Code', viewValue: 'Pro​ ​Code'},
         {value: 'Profession', viewValue: 'Profession'},
@@ -37,6 +34,7 @@ export class OptionsComponent implements OnInit {
         {value: 'Environment', viewValue: 'Environment'},
         {value: 'Machine', viewValue: 'Machine'},
     ];
+
     @Output() DateRange = new EventEmitter<IMyDateRangeModel>();
     @Output() StateCode = new EventEmitter<string>();
     @Output() Field = new EventEmitter<string>();
@@ -46,13 +44,12 @@ export class OptionsComponent implements OnInit {
         // other options...
         dateFormat: 'dd/mm/yyyy',
     };
-    myDateRangePickerOptions: IMyDrpOptions = {
+    public myDateRangePickerOptions: IMyDrpOptions = {
         // other options...
         dateFormat: 'mm/dd/yyyy'
     };
 
     // Initialized to specific date.
-    // public model: any = { date: { year: this.datenow.getFullYear(), month: (this.datenow.getMonth()+1), day: this.datenow.getDate() } };
     private model2: any = {
         beginDate: {year: this.datenow.getFullYear(), month: (this.datenow.getMonth() + 1), day: this.datenow.getDate()},
         endDate: {year: this.datenow.getFullYear(), month: (this.datenow.getMonth() + 1), day: this.datenow.getDate()}
