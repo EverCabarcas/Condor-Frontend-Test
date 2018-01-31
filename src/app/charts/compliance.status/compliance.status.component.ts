@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-    selector: 'app-chart-machine',
-    templateUrl: './chart-machine.component.html',
-    styleUrls: ['./chart-machine.component.css']
+    selector: 'app-chart-compliance-status',
+    templateUrl: './compliance.status.component.html',
+    styleUrls: ['./compliance.status.component.css']
 })
-export class ChartMachineComponent implements OnInit {
+export class ChartComplianceStatusComponent implements OnInit {
+
     bol = false;
     NumberData: number [] = [];
     LabelData: string [] = [];
@@ -19,6 +20,12 @@ export class ChartMachineComponent implements OnInit {
 
     public barChartData: any[];
 
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
+
     receive(data: any) {
         while (this.NumberData.length > 0) {
             this.NumberData.pop();
@@ -29,27 +36,14 @@ export class ChartMachineComponent implements OnInit {
 
         for (let d of data) {
             this.NumberData.push(d.number);
-            this.LabelData.push(d.machine);
+            this.LabelData.push(d.compliance);
         }
 
         this.barChartData = [
-            {data: this.NumberData, label: 'Requests​ ​per​ ​Machine'}
+            {data: this.NumberData, label: 'Compliance​ ​Status​ '}
         ];
         this.barChartLabels = this.LabelData;
         this.bol = true;
-    }
-
-    // events
-    public chartClicked(e: any): void {
-    }
-
-    public chartHovered(e: any): void {
-    }
-
-    constructor() {
-    }
-
-    ngOnInit() {
     }
 
 }

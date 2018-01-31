@@ -2,8 +2,8 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
     selector: 'app-chart',
-    templateUrl: './chart.component.html',
-    styleUrls: ['./chart.component.css']
+    templateUrl: './response.time.day.component.html',
+    styleUrls: ['./response.time.day.component.css']
 })
 export class ChartComponent implements OnInit {
     bol2 = false;

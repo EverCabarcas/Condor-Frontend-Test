@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChartComplianceStatusComponent } from './chart-compliance-status.component';
+import { ChartComplianceStatusComponent } from './compliance.status.component';
 
 describe('ChartComplianceStatusComponent', () => {
   let component: ChartComplianceStatusComponent;

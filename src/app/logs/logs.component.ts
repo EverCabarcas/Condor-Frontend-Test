@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {PagerService} from '../pager.service';
+import {PagerService} from '../service/pager.service';
 import {IMyDateRangeModel} from 'mydaterangepicker';
-import {ChartComponent} from '../chart/chart.component';
-import {ChartMachineComponent} from '../chart-machine/chart-machine.component';
-import {ChartComplianceStatusComponent} from '../chart-compliance-status/chart-compliance-status.component';
+import {ChartComponent} from '../charts/response.time.day/response.time.day.component';
+import {ChartMachineComponent} from '../charts/machine/machine.component';
+import {ChartComplianceStatusComponent} from '../charts/compliance.status/compliance.status.component';
 import {OptionsComponent} from '../options/options.component';
 
 

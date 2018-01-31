@@ -12,16 +12,16 @@ import {MyDatePickerModule} from 'mydatepicker';
 import {MyDateRangePickerModule} from 'mydaterangepicker';
 
 import {AppComponent} from './app.component';
-import {ChartComponent} from './chart/chart.component';
-import {PagerService} from './pager.service';
+import {ChartComponent} from './charts/response.time.day/response.time.day.component';
+import {PagerService} from './service/pager.service';
 import {LogsComponent} from './logs/logs.component';
 import {OptionsComponent} from './options/options.component';
 import {FormsModule} from '@angular/forms';
 import {LoadingModule} from 'ngx-loading';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {ChartsModule} from 'ng2-charts';
-import {ChartMachineComponent} from './chart-machine/chart-machine.component';
-import {ChartComplianceStatusComponent} from './chart-compliance-status/chart-compliance-status.component';
+import {ChartMachineComponent} from './charts/machine/machine.component';
+import {ChartComplianceStatusComponent} from './charts/compliance.status/compliance.status.component';
 import {TooltipModule} from 'ng2-tooltip';
 import {MatDividerModule} from '@angular/material/divider';
 
