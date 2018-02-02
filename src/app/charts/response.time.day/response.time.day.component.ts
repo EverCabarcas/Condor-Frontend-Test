@@ -64,8 +64,7 @@ export class ChartComponent implements OnInit {
                     same++;
                 }
             }
-            console.log(count);
-            this.data.push(Math.abs((count / message.number.length)));
+            this.data.push(Math.abs((count / same)));
             count = 0;
             same = 0;
         }

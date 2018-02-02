@@ -142,8 +142,6 @@ export class LogsComponent implements OnInit {
 
         // get pager object from service
         this.pager = this.pagerService.getPager(this.alldata.length, page);
-        console.log(this.pager);
-        console.log(this.alldata.length);
 
         // get current page of items
         this.pagedata = this.alldata.slice(this.pager.startIndex, this.pager.endIndex + 1);
@@ -357,7 +355,6 @@ export class LogsComponent implements OnInit {
         for (let c of this.logresponse) {
             count += c.averagetime;
         }
-        console.log(count);
         this.resultime = Math.abs(count / this.alldata.length);
         count = 0;
     }
